@@ -78,7 +78,7 @@ class AlertConfiguration:
         self.NOISE_SCALE_FACTOR_PEOPLE_SILHOUETTE_REDUCED = 7e-4
 
         self.BACKGROUND_METHOD = 'MOG2'
-        self.BACKGROUND_LEARNING_RATE = 0.9
+        self.BACKGROUND_LEARNING_RATE = 0.0004
 
         # Make detectron configuration
         self.detectron_cfg = get_cfg()
