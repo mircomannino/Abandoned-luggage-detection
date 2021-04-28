@@ -36,7 +36,7 @@ if __name__ == '__main__':
 
     # Output Video
     output_name_file = os.path.splitext(os.path.basename(args.input_file))[0]
-    output_path = './output/' + output_name_file + '_outputBoxByDetectron' + 'FPS=' + str(fps) +'.mp4'
+    output_path = args.output_dir + '/'  + output_name_file + '_outputBoxByDetectron' + 'FPS=' + str(fps) +'.mp4'
     output_video = cv2.VideoWriter(output_path,cv2.VideoWriter_fourcc(*'DIVX'), fps, size)
     print('output_file: ', output_path)
     print('*******************************************************************')

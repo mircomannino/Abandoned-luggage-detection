@@ -21,8 +21,10 @@ if __name__ == '__main__':
     # Get info about the input video
     video_path = args.input_file
     video = cv2.VideoCapture(video_path)
-    width = int(video.get(cv2.CAP_PROP_FRAME_WIDTH ))
-    height = int(video.get(cv2.CAP_PROP_FRAME_HEIGHT ))
+    # width = int(video.get(cv2.CAP_PROP_FRAME_WIDTH ))
+    # height = int(video.get(cv2.CAP_PROP_FRAME_HEIGHT ))
+    width = 1280
+    height = 720
     size = (width, height)
 
 
@@ -37,7 +39,7 @@ if __name__ == '__main__':
 
     # Output Video
     output_name_file = os.path.splitext(os.path.basename(args.input_file))[0]
-    output_path = args.output_dir + output_name_file + '_BG_BoxByDetectron' + 'FPS=' + str(fps) +'.mp4'
+    output_path = args.output_dir + '/' + output_name_file + '_BG_BoxByDetectron' + 'FPS=' + str(fps) +'.mp4'
     output_video = cv2.VideoWriter(output_path,cv2.VideoWriter_fourcc(*'DIVX'), fps, size)
     print('output_file: ', output_path)
     print('*******************************************************************')
