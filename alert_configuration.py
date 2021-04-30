@@ -31,6 +31,10 @@ class AlertConfiguration:
         a pixel is decremented in the case in which the value of this pixel
         is less than THRESHOLD_ACCUMULATION_MASK.
 
+        SKIPPED_FRAMES:
+        Number of frames of the input video that have to be skipped during 
+        video processing.
+
         PEOPLE_ID:
         Id of the people category. According with COCO dataset IDs.
 
@@ -69,6 +73,7 @@ class AlertConfiguration:
         self.PEOPLE_STATIONARY_SECONDS = 10
         self.SLIDING_WINDOW_SECONDS = 10
         self.BACK_STEP = 1
+        self.SKIPPED_FRAMES = 2
         self.THRESHOLD_ACCUMULATION_MASK = 0.5
         self.PEOPLE_ID = 0
         self.CATEGORIES_ID = [24, 26, 28]   # backpack, handbag, suitcase
@@ -78,7 +83,7 @@ class AlertConfiguration:
         self.NOISE_SCALE_FACTOR_PEOPLE_SILHOUETTE_REDUCED = 7e-4
 
         self.BACKGROUND_METHOD = 'MOG2'
-        self.BACKGROUND_LEARNING_RATE = 0.0004
+        self.BACKGROUND_LEARNING_RATE = 0.0007
 
         # Make detectron configuration
         self.detectron_cfg = get_cfg()

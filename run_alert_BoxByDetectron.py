@@ -25,10 +25,14 @@ if __name__ == '__main__':
     height = int(video.get(cv2.CAP_PROP_FRAME_HEIGHT ))
     size = (width, height)
 
+    # Create Alert configuration
+    alert_cfg = AlertConfiguration()
+    print(alert_cfg)
+
     ############################################################################
     print('*******************************************************************')
     # Frame to skip
-    skipped_frames = args.skipped_frames
+    skipped_frames = alert_cfg.SKIPPED_FRAMES
     fps    = int(video.get(cv2.CAP_PROP_FPS) / skipped_frames)
     print('dimension: ', width, height)
     print('Actual fps: ', fps)
@@ -43,8 +47,6 @@ if __name__ == '__main__':
     ############################################################################
 
     # Create the Alert object
-    alert_cfg = AlertConfiguration()
-    print(alert_cfg)
     alert = Alert_BoxByDetectron(height=height, width=width, fps=fps, alert_cfg=alert_cfg)
 
     # Run the alarm system

@@ -21,17 +21,18 @@ if __name__ == '__main__':
     # Get info about the input video
     video_path = args.input_file
     video = cv2.VideoCapture(video_path)
-    # width = int(video.get(cv2.CAP_PROP_FRAME_WIDTH ))
-    # height = int(video.get(cv2.CAP_PROP_FRAME_HEIGHT ))
-    width = 1280
-    height = 720
+    width = int(video.get(cv2.CAP_PROP_FRAME_WIDTH ))
+    height = int(video.get(cv2.CAP_PROP_FRAME_HEIGHT ))
     size = (width, height)
 
+    # Create the Alert configuration object
+    alert_cfg = AlertConfiguration()
+    print(alert_cfg)
 
     ############################################################################
     print('*******************************************************************')
     # Frame to skip
-    skipped_frames = args.skipped_frames
+    skipped_frames = alert_cfg.SKIPPED_FRAMES
     fps    = int(video.get(cv2.CAP_PROP_FPS) / skipped_frames)
     print('dimension: ', width, height)
     print('Actual fps: ', fps)
@@ -39,15 +40,13 @@ if __name__ == '__main__':
 
     # Output Video
     output_name_file = os.path.splitext(os.path.basename(args.input_file))[0]
-    output_path = args.output_dir + '/' + output_name_file + '_BG_BoxByDetectron' + 'FPS=' + str(fps) +'.mp4'
+    output_path = args.output_dir + '/' + output_name_file + 'output_BG_BoxByDetectron' + 'FPS=' + str(fps) +'.mp4'
     output_video = cv2.VideoWriter(output_path,cv2.VideoWriter_fourcc(*'DIVX'), fps, size)
     print('output_file: ', output_path)
     print('*******************************************************************')
     ############################################################################
 
-    # Create the Alert object
-    alert_cfg = AlertConfiguration()
-    print(alert_cfg)
+    # Create Alert object
     alert = Alert_BG_BoxByDetectron(height=height, width=width, fps=fps, alert_cfg=alert_cfg)
 
     frame_counter = 0

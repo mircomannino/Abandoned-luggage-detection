@@ -16,8 +16,6 @@ def create_parser():
                         help='Path to the input video file, (default: ./data/video1.mp4)')
     parser.add_argument('--output_dir', '-o', type=str, default='./output/',
                         help='Path to the output folder (default: ./output/)')
-    parser.add_argument('--skipped_frames', '-s', type=int, default=2,
-                        help='Number of frame to skip during exectuion (default: 2)')
     return parser.parse_args()
 
 def get_box_from_indexes(pixels_indexes):
