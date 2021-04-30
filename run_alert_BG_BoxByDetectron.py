@@ -44,7 +44,7 @@ if __name__ == '__main__':
     print('Real fps: ', fps*skipped_frames)
 
     # Output Video
-    output_name_file = os.path.splitext(os.path.basename(args.input_file))[0] + 'output_BG_BoxByDetectron' + '.mp4'
+    output_name_file = os.path.splitext(os.path.basename(args.input_file))[0] + '_output_BG_BoxByDetectron' + '.mp4'
     output_path = os.path.join(args.output_dir, output_name_file) 
     output_video = cv2.VideoWriter(output_path,cv2.VideoWriter_fourcc(*'DIVX'), fps, size)
     print('output_file: ', output_path)

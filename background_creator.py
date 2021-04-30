@@ -21,7 +21,7 @@ class BackgroundCreator:
         Constructor
         Args:
             method:         Method to use to estimate the background:
-                            [MOG2, KNN, CNT]
+                            [MOG2, KNN]
             learning_rate:  Learning rate used from the background model
         '''
         # Initialize background subtractor
@@ -30,8 +30,6 @@ class BackgroundCreator:
             self.backSub = cv2.createBackgroundSubtractorMOG2()
         elif method == 'KNN':
             self.backSub = cv2.createBackgroundSubtractorKNN()
-        elif method == 'CNT':
-            self.backSub = cv2.bgsegm.createBackgroundSubtractorCNT()
         else:
             raise ValueError('Wrong Background subtraction method')
 

@@ -62,7 +62,10 @@ class AlertConfiguration:
 
         BACKGROUND_METHOD:
         Method of background subtraction. Used only in Alert_BG_BoxByDetectron.
-        Possible choices: [MOG2, KNN, CNT]
+        Possible choices: [MOG2, KNN]
+
+        BACKGROUND_LEARNING_RATE:
+        Learning rate of the background model
 
         detectron_cfg:
         It is the configuration for detectron2. It takes pretrained weights
