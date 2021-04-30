@@ -36,7 +36,7 @@ if __name__ == '__main__':
 
     ############################################################################
     print('*******************************************************************')
-    # Frame to skip
+    # Compute actual fps considering the skipped frames
     skipped_frames = alert_cfg.SKIPPED_FRAMES
     fps    = int(video.get(cv2.CAP_PROP_FPS) / skipped_frames)
     print('dimension: ', width, height)
