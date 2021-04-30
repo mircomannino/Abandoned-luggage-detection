@@ -18,6 +18,11 @@ if __name__ == '__main__':
         print('\t', arg_name, ':', arg_val)
     print('***********************************************\n')
 
+    # Check on video input
+    if(not os.path.exists(args.input_file)):
+        print('Error: {} does not exist'.format(args.input_file))
+        exit()
+
     # Get info about the input video
     video_path = args.input_file
     video = cv2.VideoCapture(video_path)
@@ -39,8 +44,8 @@ if __name__ == '__main__':
     print('Real fps: ', fps*skipped_frames)
 
     # Output Video
-    output_name_file = os.path.splitext(os.path.basename(args.input_file))[0]
-    output_path = args.output_dir + '/'  + output_name_file + '_outputBoxByDetectron' + 'FPS=' + str(fps) +'.mp4'
+    output_name_file = os.path.splitext(os.path.basename(args.input_file))[0] + '_outputBoxByDetectron' +'.mp4'
+    output_path = os.path.join(args.output_dir, output_name_file) 
     output_video = cv2.VideoWriter(output_path,cv2.VideoWriter_fourcc(*'DIVX'), fps, size)
     print('output_file: ', output_path)
     print('*******************************************************************')
