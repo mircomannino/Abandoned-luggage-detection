@@ -61,47 +61,20 @@ class BackgroundCreator:
         '''
         # People masks
         _, mask = cv2.threshold(mask, 0, 255, cv2.THRESH_BINARY)
-        # print('people: ', mask.dtype)
-        # cv2_imshow(mask)
         boolean_mask = get_bool_mask(mask, threshold=0)
 
-        # Foreground
-        '''
-        Abbiamo applicato erosione sulla foreground invertita, ma lo scopo è
-        quello di andare a dilatare il foreground originale.
-        Non applichiamo un'operazione morfologica direttamente all'immagine finale
-        per non distorcere troppo le persone ferme.
-        '''
+        # Foreground with invertend pixel values
         inverted_foreground = ~self.foreground
         _, inverted_foreground = cv2.threshold(inverted_foreground, 0, 255, cv2.THRESH_BINARY)
-        # print('foreground: ', inverted_foreground.dtype)
         kernel = np.ones((5, 5), dtype='uint8')
         inverted_foreground =  cv2.morphologyEx(inverted_foreground, cv2.MORPH_ERODE, kernel)
-        # print('cleaned foreground..............................................')
-        # cv2_imshow(inverted_foreground)
         boolean_inverted_foreground = get_bool_mask(inverted_foreground, threshold=0)
 
         # And operation
-        # print('tot TRUE people: ', np.sum(boolean_mask))
-        # print('tot TRUE foreg: ', np.sum(boolean_inverted_foreground))
         stationary_silhouette = np.logical_and(boolean_mask, boolean_inverted_foreground)
-        # print('tot TRUE final: ', np.sum(stationary_silhouette))
-        # print('final type: ', stationary_silhouette.dtype)
         stationary_silhouette = get_numerical_mask(stationary_silhouette, 255)
-        # print('final type: ', stationary_silhouette.dtype)
 
         # Apply morphological transformations
-        '''
-        TODO:
-        Per evidenziare ancora meglio le persone dobbiamo applicare sul risultato
-        finale (stationary_silhouette) un'operazione di dilatazione. Facendo così
-        è come aver fatto una chiusura (o apertura) solo sulle persone ferme; ma
-        abbiamo spezzato l'operazione in due fasi.
-        '''
         stationary_silhouette = cv2.morphologyEx(stationary_silhouette, cv2.MORPH_DILATE, kernel)
-        # cv2_imshow(stationary_silhouette)
-        # kernel = np.ones((3, 3), dtype='uint8')
-        # stationary_silhouette_cleaned = cv2.morphologyEx(stationary_silhouette, cv2.MORPH_OPEN, kernel)
-        # cv2_imshow(stationary_silhouette_cleaned)
 
         return  stationary_silhouette
