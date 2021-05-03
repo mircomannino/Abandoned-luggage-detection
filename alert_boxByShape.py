@@ -77,10 +77,10 @@ class Alert_BoxByShape:
                         noise_threshold = (people_window_black_white.shape[0] * people_window_black_white.shape[1]) * self.alert_cfg.NOISE_SCALE_FACTOR_PEOPLE_SILHOUETTE_REDUCED
                         # Search if there are stationary pepople in the window
                         if (people_window_black_white > 0).sum() < noise_threshold:
-                            print('ALARM: Abbandoned baggage')
+                            print('ALARM: Abandoned baggage')
                             draw_single_bounding_box(frame, box, self.detectors[category_id].color)
                         else:
                             print('Find person near a stationary object')
                 else:
-                    print('ALARM: Abbadoned baggage')
+                    print('ALARM: Abadoned baggage')
                     draw_all_bounding_boxes_from_clusters(frame, stationary_pixels_indexes, self.detectors[category_id].color)

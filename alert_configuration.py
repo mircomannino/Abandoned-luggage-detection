@@ -102,6 +102,10 @@ class AlertConfiguration:
             print('device: cuda')
 
     def __str__(self):
+        '''
+        Method used to return a string with all the parameters
+        of the configuration
+        '''
         return_str = '\n*************** Alert configuration **************\n'
         for attributes, val in self.__dict__.items():
             if(attributes != "detectron_cfg"):

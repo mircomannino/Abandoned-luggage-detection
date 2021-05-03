@@ -11,7 +11,7 @@ import numpy as np
 
 class Alert_BG_BoxByDetectron:
     '''
-    Class used to make the alert in case of abbandoned objects.
+    Class used to make the alert in case of abandoned objects.
     It uses StationaryObjectsDetector objects in order to find stationary baggages
     It uses a background model in order to find stationary people.
     It uses boxes of detectron prediction to draw the box of abbandoned object
@@ -82,10 +82,10 @@ class Alert_BG_BoxByDetectron:
                         noise_threshold_window = (people_silhouette_window.shape[0] * people_silhouette_window.shape[1]) * self.alert_cfg.NOISE_SCALE_FACTOR_PEOPLE_SILHOUETTE_REDUCED
                         # Search if there are stationary pepople in the window
                         if (people_silhouette_window > 0).sum() < noise_threshold_window:  # 50 pixel di rumore sono ammessi
-                            print('ALARM: Abbandoned baggage')
+                            print('ALARM: Abandoned baggage')
                             draw_single_bounding_box(frame, box, self.detectors[category_id].color)
                         else:
                             print('Find person near a stationary object')
                 else:
-                    print('ALARM: Abbadoned baggage')
+                    print('ALARM: Abadoned baggage')
                     draw_all_bounding_boxes_from_predictions(frame, predictions, predicted_stationary_indexes, category_id, self.detectors[category_id].color)
