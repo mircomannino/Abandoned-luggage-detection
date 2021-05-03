@@ -29,6 +29,18 @@ In the **base scripts group** there are all the scripts that contain the base cl
 by the scripts in the **main scripts group**. The **run scripts group** contains a script for
 each script in the main scripts group, and through this group it is possible to launch
 the effective alarming system.  
+The main scripts address the problem of detection in three different ways:
+* __alert_BoxByDetectron.py__
+  It uses Detectron2 predictions to construct the silhouettes of stationary baggage and stationary people. 
+  It uses Detectron2’s predicted bounding boxes to highlight abandoned luggage.
+* __alert_BG_BoxByDetectron.py__
+  It uses Detectron2 predictions to construct the silhouettes of stationary baggage.
+  It uses a background model (Es. MOG2) to construct the silhouettes of stationary people.
+  It uses Detectron2’s predicted bounding boxes to highlight abandoned luggage	
+* __alert_BoxByShape.py__
+  It uses Detectron2 predictions to construct the silhouettes of stationary baggage and stationary people. 
+  It uses the shape of the abandoned baggage to highlight them.
+
 
 ## SYSTEM SETUP
 All the “run scripts” use the script **alert_configuration.py** to set up the internal
