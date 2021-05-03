@@ -20,7 +20,7 @@ class StationaryObjectsDetector(StationarySilhouette):
         sliding_window:     SlidingWindow object
         accumulation_mask:  AccumulationMask object
     Attributes:
-        color:              Color (BGR format) with which the abbandoned objects
+        color:              Color (BGR format) with which the abandoned objects
                             are highlighted
     '''
     def __init__(self, height, width, category_id, tot_frames_sliding_window, color):
@@ -41,7 +41,7 @@ class StationaryObjectsDetector(StationarySilhouette):
         '''
         Method used to select the indexes (in the predictions) that are
         stationary. These indexes will be used to check if the correspondance
-        object is abbandoned.
+        object is abandoned.
         Args:
             predictions:    Dictionary returned by detectron
             stationary_threshold:   Threshold which determines if a pixel is
@@ -92,7 +92,7 @@ class StationaryObjectsDetector(StationarySilhouette):
     def find_clusters_pixels_indexes(self, stationary_threshold):
         '''
         Method used to find all the clusters of pixels that are stationary, they
-        represent the abbandoned objects.
+        represent the abandoned objects.
         Args:
             stationary_threshold:   Threshold to evaluate if a pixel is stationary
         Returns:
